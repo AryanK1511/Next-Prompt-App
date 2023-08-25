@@ -28,7 +28,6 @@ const Feed = () => {
   }
 
   useEffect(() => {
-    console.log("Hell2o");
     const fetchPosts = async () => {
       const response = await fetch("/api/prompt");
       const data = await response.json();
