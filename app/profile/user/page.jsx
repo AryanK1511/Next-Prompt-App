@@ -20,8 +20,11 @@ const PromptCardList = ({ data, handleTagClick }) => {
 const UserProfile = () => {
     const searchParams = useSearchParams();
     const userId = searchParams.get("id");
+    const userName = searchParams.get("name");
+
     const [posts, setPosts] = useState([]);
-    
+    const [name, setName] = useState(userName);
+
     useEffect(() => {
       const fetchPosts = async () => {
         const response = await fetch(`/api/users/${userId}/posts`);
@@ -30,11 +33,13 @@ const UserProfile = () => {
       };
   
       fetchPosts();
-      console.log(posts);
     }, []);
 
   return (
-    <section className='feed'>
+    <section className="w-full">
+      <h1 className="head_text text-left">
+        <span className="blue_gradient">{name}'s Posts</span>
+      </h1>
       <PromptCardList data={posts} handleTagClick={() => {}} />
     </section>
   )
